@@ -4,10 +4,10 @@ namespace LnangnangHelper;
 
 class lnString
 {
-  function is_pc()
+  static function is_pc()
   {
   }
-  function is_mobile()
+  static function is_mobile()
   {
   }
 }

@@ -4,10 +4,10 @@ namespace Langnang;
 
 class lnArray
 {
-  function to_array()
+  static function to_array()
   {
   }
-  function to_tree()
+  static function to_tree()
   {
   }
 }
