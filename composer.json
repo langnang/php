@@ -12,6 +12,8 @@
     ],
     "require": {},
     "autoload": {
-        "Langnang\\": "lib"
+        "psr-4": {
+            "Langnang\\": "lib"
+        }
     }
 }
