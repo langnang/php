@@ -2,7 +2,13 @@
 
 require_once __DIR__ . "/vendor/autoload.php";
 
+use Langnang\lnArray;
+use Langnang\lnFunction;
 
-use Langnang\lnFunction as func;
 
-var_dump(func::get_var_type("123"));
+var_dump(lnArray::to_ini([
+  "name" => "name",
+  "value" => [
+    "value" => "value"
+  ]
+]));

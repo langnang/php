@@ -15,4 +15,17 @@ class lnArray
   {
     $tree = [];
   }
+  static function to_ini($array)
+  {
+    $result = "";
+    foreach ($array as $key => $value) {
+      if (is_array($value)) {
+        $result .= "[$key]\n";
+        $result .= self::to_ini($value);
+      } else {
+        $result .= "$key = $value\n";
+      }
+    }
+    return $result;
+  }
 }
