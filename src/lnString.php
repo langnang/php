@@ -44,4 +44,11 @@ class lnString
   {
     return strtolower(preg_replace('/([a-z])([A-Z])/', "$1" . $separator . "$2", $camelCaps));
   }
+  /**
+   * 字符串转布尔值
+   */
+  static function to_bool($string)
+  {
+    return (bool)($string == 'true' ? true : false);
+  }
 }
