@@ -1,6 +1,6 @@
 <?php
 
-namespace LnangnangHelper;
+namespace Langnang;
 
 class lnServer
 {
