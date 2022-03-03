@@ -41,20 +41,22 @@ class lnModel
       return;
     } else {
       $default_value = get_class_vars(__CLASS__)[$name];
-      // 如果为null 或未设置默认值
-      if (is_null($default_value)) {
+      // 如果为null 或未设置默认值 || 类型一致
+      if (is_null($default_value) || lnFunction::get_var_type($value) == lnFunction::get_var_type($default_value)) {
         $this->{$name} = $value;
       } else {
-        if (lnFunction::get_var_type($value) == lnFunction::get_var_type($default_value)) {
-          $this->{$name} = $value;
-        } else {
-          switch (lnFunction::get_var_type($value)) {
-            case 'string':
-              break;
-            default:
-              break;
-          }
+        $result = $value;
+        switch (lnFunction::get_var_type($value)) {
+          case 'string':
+            $result = call_user_func([lnString::class, "to_" . lnFunction::get_var_type($default_value)], $value);
+            break;
+          case 'array':
+            $result = call_user_func([lnArray::class, "to_" . lnFunction::get_var_type($default_value)], $value);
+            break;
+          default:
+            break;
         }
+        $this->{$name} = $result;
       }
     }
   }
