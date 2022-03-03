@@ -33,8 +33,10 @@ class lnModel
   function __set($name, $value)
   {
     // 判断存在自定义函数
-    if (method_exists($this, 'set' . $name)) {
-      $this->{'set' . $name}($value);
+    if (method_exists($this, 'set_' . $name)) {
+      $this->{'set_' . $name}($value);
+    } else if (method_exists($this, 'set_' . $name)) {
+      $this->{'set_' . $name}($value);
     } else if (!property_exists($this, $name)) {
       return;
     } else {
@@ -61,10 +63,11 @@ class lnModel
    */
   function __get($name)
   {
-    if (method_exists($this, 'get' . $name)) {
-      $this->{'get' . $name}();
-    } else
-    if (!isset($this->{$name})) return;
+    if (method_exists($this, 'get_' . $name)) {
+      $this->{'get_' . $name}();
+    } else if (method_exists($this, 'get_' . $name)) {
+      $this->{'get_' . $name}();
+    } else if (!isset($this->{$name})) return;
     return $this->{$name};
   }
 }
