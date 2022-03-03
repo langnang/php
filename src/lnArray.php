@@ -15,15 +15,19 @@ class lnArray
   {
     $tree = [];
   }
-  static function to_ini($array)
+  static function to_ini($array, $to_string = false)
   {
     $result = "";
     foreach ($array as $key => $value) {
       if (is_array($value)) {
-        $result .= "[$key]\n";
-        $result .= self::to_ini($value);
+        if (!$to_string) {
+          $result .= "[$key]\n";
+          $result .= self::to_ini($value, true);
+        } else {
+          $result = "$key = " . implode(',', $value) . "\n";
+        }
       } else {
-        $result .= "$key = $value\n";
+        $result .= "$key = " . $value . "\n";
       }
     }
     return $result;

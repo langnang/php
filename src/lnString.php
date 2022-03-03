@@ -2,6 +2,8 @@
 
 namespace Langnang;
 
+use function GuzzleHttp\Psr7\str;
+
 class lnString
 {
   static function is_pc()
@@ -49,6 +51,20 @@ class lnString
    */
   static function to_bool($string)
   {
-    return (bool)($string == 'true' ? true : false);
+    return (bool)($string == 'true' || $string == '1' ? true : false);
+  }
+  static function to_int($string)
+  {
+    return (int)$string;
+  }
+  static function to_array($string)
+  {
+    $result = json_decode($string, JSON_UNESCAPED_UNICODE);
+    if (is_null($result)) {
+      if (substr($string, 0, 1) == '[') $string = substr($string, 1);
+      if (substr($string, -1) == ']') $string = substr($string, 0, -1);
+      $result = explode(",", $string);
+    }
+    return $result;
   }
 }
