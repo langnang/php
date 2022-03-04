@@ -39,9 +39,10 @@ class lnModel
     // 保持数据类型一致
     $default_value = $this->{$name};
     // 如果为null 或未设置默认值 || 类型一致
-    if (is_null($default_value) || lnFunction::get_var_type($value) == lnFunction::get_var_type($default_value)) {
+    if (is_null($default_value) || lnFunction::get_var_type($value) === lnFunction::get_var_type($default_value)) {
       $this->{$name} = $value;
     } else {
+      // var_dump($name);
       switch (lnFunction::get_var_type($value)) {
         case 'string':
           $value = call_user_func([lnString::class, "to_" . lnFunction::get_var_type($default_value)], $value);

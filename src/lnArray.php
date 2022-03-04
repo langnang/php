@@ -24,7 +24,7 @@ class lnArray
           $result .= "[$key]\n";
           $result .= self::to_ini($value, true);
         } else {
-          $result = "$key = " . implode(',', $value) . "\n";
+          $result .= "$key = " . implode(',', $value) . "\n";
         }
       } else {
         $result .= "$key = " . $value . "\n";
