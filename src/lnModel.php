@@ -74,4 +74,17 @@ class lnModel
     } else if (!isset($this->{$name})) return;
     return $this->{$name};
   }
+
+  function __to_array($depth = true)
+  {
+    $result = json_decode(json_encode($this, JSON_UNESCAPED_UNICODE), true);
+    if (!$depth) {
+      foreach ($result as $name => $value) {
+        if (is_array($value)) {
+          $result[$name] = addslashes(json_encode($value, JSON_UNESCAPED_UNICODE));
+        }
+      }
+    }
+    return $result;
+  }
 }
