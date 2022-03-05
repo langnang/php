@@ -25,7 +25,9 @@ class lnModel
     }
 
     foreach ($model as $name => $value) {
-      $this->__set($name, $value);
+      if (isset($this->{$name})) {
+        $this->__set($name, $value);
+      }
     }
   }
   /**
