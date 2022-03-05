@@ -25,7 +25,7 @@ class lnModel
     }
 
     foreach ($model as $name => $value) {
-      if (isset($this->{$name})) {
+      if (array_key_exists($name, get_class_vars(static::class))) {
         $this->__set($name, $value);
       }
     }
